@@ -1,0 +1,47 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>ListRequests</servlet-name>
+  	<display-name>ListRequests</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.controller.ListRequests</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AddRequest</servlet-name>
+  	<display-name>AddRequest</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.controller.AddRequest</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>RegisterServlet</servlet-name>
+  	<display-name>RegisterServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.controller.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>LoginSevlet</servlet-name>
+  	<display-name>LoginSevlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.controller.LoginSevlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ListRequests</servlet-name>
+  	<url-pattern>/ListRequests</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AddRequest</servlet-name>
+  	<url-pattern>/AddRequest</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RegisterServlet</servlet-name>
+  	<url-pattern>/RegisterServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LoginSevlet</servlet-name>
+  	<url-pattern>/LoginSevlet</url-pattern>
+  </servlet-mapping>
+</web-app>
