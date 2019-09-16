@@ -28,16 +28,7 @@ public class ListRequests extends HttpServlet {
 		DonationDAO dao = new DonationDAOImpl();
 		
 
-			List<DonationRequest> list = null;
-			try {
-				list = dao.findAll();
-				DisplayUtil.display(list);
-				
-			} catch (DBException e) {
-				
-			}
-			Gson gson=new Gson();
-			String json=gson.toJson(list);
+			String json=DonationController.listRequest();
 			
 			PrintWriter out =response.getWriter();
 			

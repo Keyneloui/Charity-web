@@ -19,7 +19,7 @@
 function login()
 {
 alert("Registered successfully");
-window.location.href = "viewRequest.jsp";
+window.location.href = "home.jsp";
 }
 </script>
 	<form onsubmit="register()">
@@ -27,7 +27,7 @@ window.location.href = "viewRequest.jsp";
 			placeholder="Enter Name" required autofocus /> <br /> <label>Email:</label>
 		<input type="email" name="email" id="email" placeholder="Enter Email"
 			required /> <br /> <label>Password:</label> <input type="password"
-			name="password" id="password" placeholder="Enter Password" required />
+			name="pass"src/main/webapp/register.jsp"word" id="password" placeholder="Enter Password" required />
 		<br /> <br /> <input type="submit" value="Submit"
 			class="btn btn-success" onclick=login()>
 		<button type="reset" class="btn btn-danger" value="clear">clear

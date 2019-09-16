@@ -29,6 +29,8 @@ public class Logintest extends HttpServlet {
 	        PrintWriter out = response.getWriter();
 	        out.write(json);        
 	        out.flush();
+	      
+
 
 
 	}

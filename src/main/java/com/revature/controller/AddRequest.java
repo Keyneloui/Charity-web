@@ -23,32 +23,16 @@ public class AddRequest extends HttpServlet {
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String requestType= request.getParameter("requestType");
-	    String requestId  = request.getParameter("requestId");
-	    String requestAmount = request.getParameter("requestAmount");
+	    int requestId  = Integer.parseInt(request.getParameter("requestId"));
+	    double requestAmount = Double.parseDouble(request.getParameter("requestAmount"));
+	    String json=DonationController.addRequest(requestType, requestId, requestAmount);
 	    PrintWriter out = response.getWriter();
-	    out.println("Type:"+requestType);
-	    out.println("Id:" + requestId);
-	    out.println("Amount:" + requestAmount );
-	   
+	    out.write(json);        
+        out.flush();
 
-		DonationDAO dao = new DonationDAOImpl();
-		DonationRequest dr = new DonationRequest();
-	    dr.setRequestAmount(Double.parseDouble(requestAmount));
-		dr.setRequestId(Integer.parseInt(requestId));
-		dr.setRequestType(requestType);
-		
-		Gson gson=new Gson();
-		String json=gson.toJson(dr);
-		
-		try {
-			dao.addDonations(dr);
-		} catch (DBException e) {
-			 //response.sendRedirect("register.jsp?message="+e.getMessage());
-			 
-			
 		}
 		
 		
 	}
 	
-}
+

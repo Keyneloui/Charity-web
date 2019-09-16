@@ -16,7 +16,7 @@
 
 	<jsp:include page="header.jsp"></jsp:include>
 	<h3>Add Donation</h3>
-
+    <form onsubmit="loadBooks()">
 	<label>Request Type:</label>
 	<input type="text" name="requestType" id="requestType"
 		placeholder="Enter requestType" required autofocus />
@@ -28,8 +28,9 @@
 	<label>Request Amount:</label>
 	<input type="number" name="requestAmount" id="requestAmount"
 		placeholder="Enter amount" required />
-	<br />
-	<button onclick="loadBooks()">Submit</button>
+		<br/>
+	<input type="submit" value="Submit"
+			class="btn btn-success" >
 	<script>
 		//loadBooks();
 	</script>
@@ -48,23 +49,13 @@
 					+ requestId + "&requestAmount=" + requestAmount;
 			console.log(formData);
 
-			var url = "http://localhost:8080/charity/AddRequest?";
+			var url = "http://localhost:8080/charity/AddRequest?"+formData;
 			console.log(url);
-			//var formData = {};
-			//$.get(url, function(response){
-
-			//    console.log(response);
-			//});
-
-			var xhr = new XMLHttpRequest();
-			xhr.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					console.log(JSON.stringify(this.responseText));
-					console.log('status ok!');
-				}
-			}
-			xhr.open('GET', url + formData, true);
-			xhr.send();
+			  var formData = {};
+			  $.get(url, function(response){
+			          console.log(response);
+			  });
+			
 		}
 	</script>
 
