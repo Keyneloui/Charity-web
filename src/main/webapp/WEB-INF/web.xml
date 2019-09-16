@@ -28,6 +28,42 @@
   	<description></description>
   	<servlet-class>com.revature.controller.LoginSevlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>DonorLoginServlet</servlet-name>
+  	<display-name>DonorLoginServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.controller.DonorLoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ContributeRequest</servlet-name>
+  	<display-name>ContributeRequest</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.controller.ContributeRequest</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DonorActivity</servlet-name>
+  	<display-name>DonorActivity</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.controller.DonorActivity</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DonorListServlet</servlet-name>
+  	<display-name>DonorListServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.controller.DonorListServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>Logintest</servlet-name>
+  	<display-name>Logintest</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.controller.Logintest</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AdminLogin</servlet-name>
+  	<display-name>AdminLogin</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.controller.AdminLogin</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ListRequests</servlet-name>
   	<url-pattern>/ListRequests</url-pattern>
@@ -43,5 +79,29 @@
   <servlet-mapping>
   	<servlet-name>LoginSevlet</servlet-name>
   	<url-pattern>/LoginSevlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DonorLoginServlet</servlet-name>
+  	<url-pattern>/DonorLoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ContributeRequest</servlet-name>
+  	<url-pattern>/ContributeRequest</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DonorActivity</servlet-name>
+  	<url-pattern>/DonorActivity</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DonorListServlet</servlet-name>
+  	<url-pattern>/DonorListServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Logintest</servlet-name>
+  	<url-pattern>/Logintest</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AdminLogin</servlet-name>
+  	<url-pattern>/AdminLogin</url-pattern>
   </servlet-mapping>
 </web-app>

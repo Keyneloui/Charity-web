@@ -7,14 +7,12 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script src="js/bootstrap.min.js"></script>
-
-
 <script src="js/jquery-3.4.1.min.js"></script>
-
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<h3>Add Donation</h3>
+	<h3>Your Contributions</h3>
+	
 
 	<label>Request Type:</label>
 	<input type="text" name="requestType" id="requestType"
@@ -29,15 +27,8 @@
 		placeholder="Enter amount" required />
 	<br />
 	<button onclick="loadBooks()">Submit</button>
-	<script>
-		//loadBooks();
-	</script>
 
-
-	<a href="index.jsp">Home</a>
-
-	<!-- Script -->
-
+	<a href="home.jsp">Home</a>
 	<script>
 		function loadBooks() {
 			var requestType = document.getElementById("requestType").value;
@@ -47,7 +38,7 @@
 					+ requestId + "&requestAmount=" + requestAmount;
 			console.log(formData);
 
-			var url = "http://localhost:8080/charity/AddRequest?";
+			var url = "http://localhost:8080/charity/ContributeRequest?";
 			console.log(url);
 			//var formData = {};
 			//$.get(url, function(response){
@@ -69,6 +60,4 @@
 
 	<!-- End -->
 </body>
-
-
 </html>

@@ -9,6 +9,8 @@
 <script>
 function loadBooks()
 {
+	//http://localhost:8080/charity/AddRequest?requestType=a&requestId=5&requestAmount=100
+	//$.post ... url, form data , response ( success/failure)
 	var url = "http://localhost:8080/charity/ListRequests";
 		$.getJSON(url, function(response){
 		    var list = response;
@@ -47,7 +49,7 @@ function loadBooks()
 					<tbody id="tbody">
 
 					</tbody>
-				</table>
+				</table>s
 			</div>
 		</div>
 	</div>
@@ -55,9 +57,7 @@ function loadBooks()
 loadBooks();
 </script>
 
-	<a href="index.jsp">Main Function</a>
-	<a href="addrequest.jsp">Add Request</a>
-	<br />
-
+	<a href="home.jsp">Main Function</a>
+	<a href="ContributeToRequest.jsp">Contribute</a>
 </body>
 </html>

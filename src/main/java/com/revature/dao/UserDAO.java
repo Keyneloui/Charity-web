@@ -12,16 +12,14 @@ public interface UserDAO {
 
 	User adminLogin(String emailIds, String passwords) throws DBException;
 
-	User donorLogin(String emailId, String password) throws DBException;
-	
-	User donor(int id) throws DBException;
+	User donorLogin(String email, String password) throws DBException;
 
 	List<User> findAll() throws DBException;
 
-	void donorActivity(int donorId, double amount, String requestType, Date date) throws DBException;
+	void donorActivity(String email, double amount, String requestType, Date date) throws DBException;
 
 	void displayActivity() throws DBException;
-	
-	void admin(String email,String password) throws DBException;
+
+	void admin(String email, String password) throws DBException;
 
 }

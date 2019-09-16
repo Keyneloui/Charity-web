@@ -4,9 +4,18 @@
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Revature Charity</h2>
 
-<a href="login.jsp">Login</a> <br/>
-<a href="register.jsp">Register</a> <br/>
+
+	<jsp:include page="header.jsp"></jsp:include>
+
+
+	<a href="listdonation.jsp"> Our Donations</a>
+	<br />
+	<a href="addrequest.jsp"> Add Donations</a>
+	<br />
+	<a href="donorList.jsp"> Donor List</a>
+	<br />
+
+
 </body>
 </html>
