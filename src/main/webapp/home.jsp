@@ -8,7 +8,7 @@
 <script src="js/bootstrap.min.js"></script>
 <title>Revature Charity</title>
 </head>
-<body>
+<body style="text-align:center">
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<a href="header.jsp">Home</a>

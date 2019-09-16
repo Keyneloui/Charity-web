@@ -10,7 +10,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.4.1.min.js"></script>
 </head>
-<body>
+<body style="text-align:center">
 
 	<jsp:include page="header.jsp"></jsp:include>
 	<h2>Register For New User</h2>

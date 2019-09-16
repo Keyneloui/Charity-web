@@ -27,7 +27,7 @@ public class UserDAOImpl implements UserDAO {
 
 		try {
 			con = ConnectionUtil.getConnection();
-			String sql = "select name,email_id from donor where email_id = ? and password = ?";
+			String sql = "select name,email_id,password from donor where email_id = ? and password = ?";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, email);
 			pst.setString(2, password);
@@ -38,9 +38,11 @@ public class UserDAOImpl implements UserDAO {
 				user.setName(rs.getString("name"));
 				user.setEmail(rs.getString("email_id"));
 				user.setPassword(rs.getString("password"));
+				System.out.println("Login Success");
+
 			}
 		} catch (SQLException e) {
-			// e.printStackTrace();
+			System.out.println(e.getMessage());
 			throw new DBException("Unable to login", e);
 		} finally {
 			ConnectionUtil.close(con, pst, rs);
@@ -100,6 +102,7 @@ public class UserDAOImpl implements UserDAO {
 			rs = pst.executeQuery();
 			if (rs.next()) {
 				user = new User();
+				
 				user.setEmail(emailIds);
 				user.setPassword(passwords);
 				System.out.println("Login Success");
