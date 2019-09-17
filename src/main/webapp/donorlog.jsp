@@ -10,9 +10,10 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.4.1.min.js"></script>
 </head>
-<body style="text-align:center">
+<body style="text-align: center">
 
 	<jsp:include page="header.jsp"></jsp:include>
+	<h2>Donor Login</h2>
 	<script type="text/javascript">
 		function login() {
 			alert("Logged successfully");
@@ -21,10 +22,10 @@
 	</script>
 	<form onsubmit="register()">
 		<label>Email:</label> <input type="email" name="email_id"
-			id="email_id" placeholder="Enter Email" required autofocus/> <br /> <label>Password:</label>
-		<input type="password" name="password" id="password"
-			placeholder="Enter Password" required /> <br /> <input type="submit"
-			value="Submit" class="btn btn-success">
+			id="email_id" placeholder="Enter Email" required autofocus /> <br />
+		<label>Password:</label> <input type="password" name="password"
+			id="password" placeholder="Enter Password" required /> <br /> <input
+			type="submit" value="Submit" class="btn btn-success">
 		<button type="reset" class="btn btn-danger" value="clear">clear
 		</button>
 		<br />
@@ -47,10 +48,10 @@
 			$.get(url, function(response) {
 				console.log(response);
 				console.log(response.errorMessage);
-				var msg=JSON.parse(response);
+				var msg = JSON.parse(response);
 				//alert(msg);
-				
-				if (msg.errorMessage!=null) {
+
+				if (msg.errorMessage != null) {
 					alert("Invalid Username/Password");
 				} else {
 					//alert("valid Username/Password");

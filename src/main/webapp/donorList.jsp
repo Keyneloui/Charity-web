@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script>
+
 function loadBooks()
 {
 	var url = "http://localhost:8080/charity/DonorListServlet";
@@ -19,7 +20,8 @@ function loadBooks()
 		        content += "<tr>";
 		      
 		        content += "<td>" + dr.name + "</td>";
-		        content += "<td>" + dr.email + "</td>";
+		        content += "<td>" + dr.requestType + "</td>";
+		        content += "<td>" + dr.amount + "</td>";
 		        content += "</tr>";
 		    }
 		    console.log(content); 
@@ -29,8 +31,9 @@ function loadBooks()
 }
 </script>
 </head>
-<body>
-	<h3>Donor List</h3>
+<body style="text-align: center">
+	<jsp:include page="header.jsp"></jsp:include>
+	<h2>Donor List</h2>
 	<form onsubmit="loadBooks()"></form>
 	<div class="container-fluid">
 		<div class="row">
@@ -41,7 +44,8 @@ function loadBooks()
 						<tr>
 
 							<th>Name</th>
-							<th>Email-Id</th>
+							<th>Request Type</th>
+							<th>Request Amount</th>
 						</tr>
 					</thead>
 					<tbody id="tbody">
@@ -56,7 +60,7 @@ loadBooks();
 </script>
 
 	<a href="index.jsp">Main Function</a>
-	<a href="addrequest.jsp">Add Request</a>
+
 	<br />
 
 </body>

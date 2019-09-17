@@ -2,21 +2,25 @@ package com.revature.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.revature.dao.UserDAO;
-import com.revature.dao.UserDAOImpl;
-import com.revature.model.User;
+import com.revature.dao.AdminDAO;
+import com.revature.dao.AdminDAOImpl;
+import com.revature.model.Admin;
+import com.revature.services.AdminService;
 
 public class AdminController {
+	static AdminService as = new AdminService();
 
-	static UserDAO udao = new UserDAOImpl();
+	static AdminDAO ad = new AdminDAOImpl();
 
 	public static String login(String email, String password) {
 
 		String errorMessage = null;
 
-		User user = null;
+		Admin user = null;
 		try {
-			user = udao.adminLogin(email, password);
+			// user = ad.adminLogin(email, password);
+			user = as.adminLogin(email, password);
+
 			if (user == null) {
 				throw new Exception("invalid ");
 			}
@@ -43,7 +47,7 @@ public class AdminController {
 
 	public static void main(String[] args) {
 
-		 testLogin();
+		testLogin();
 
 	}
 

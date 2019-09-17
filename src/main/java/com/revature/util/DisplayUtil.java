@@ -6,6 +6,7 @@ import com.revature.dao.UserDAO;
 import com.revature.dao.UserDAOImpl;
 import com.revature.exception.DBException;
 import com.revature.model.DonationRequest;
+import com.revature.model.DonorActivity;
 import com.revature.model.User;
 
 public class DisplayUtil {
@@ -45,7 +46,7 @@ public class DisplayUtil {
 	public static void donorDetails() throws DBException {
 		UserDAO iudao = new UserDAOImpl();
 		try {
-			List<User> list = iudao.findAll();
+			List<DonorActivity> list = iudao.findAll();
 			displayDonor(list);
 		} catch (DBException e) {
 			System.out.println(e.getMessage());
@@ -54,13 +55,13 @@ public class DisplayUtil {
 
 	}
 
-	private static void displayDonor(List<User> list) {
+	private static void displayDonor(List<DonorActivity> list) {
 		StringBuilder content = new StringBuilder();
-		content.append(" Id\tName\tEmail\t\n");
-		for (User user : list) {
-			content.append(user.getId()).append("\t");
+		content.append(" Name\tEmail\t\n");
+		for (DonorActivity user : list) {
+
 			content.append(user.getName()).append("\t");
-			content.append(user.getEmail()).append("\t");
+			content.append(user.getEmailId()).append("\t");
 			content.append("\n");
 		}
 		System.out.println(content);

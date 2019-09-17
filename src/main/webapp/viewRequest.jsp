@@ -31,13 +31,16 @@ function loadBooks()
 }
 </script>
 </head>
-<body>
-	<h3>List Donation</h3>
+
+<body style="text-align: center">
+	<jsp:include page="header.jsp"></jsp:include>
+	<h2>Request</h2>
+	
 	<form onsubmit="loadBooks()"></form>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col">
-				<h3>List Request</h3>
+				
 				<table border="1" class="table table-condensed" id="tbl">
 					<thead>
 						<tr>
@@ -49,7 +52,7 @@ function loadBooks()
 					<tbody id="tbody">
 
 					</tbody>
-				</table>s
+				</table>
 			</div>
 		</div>
 	</div>
@@ -59,5 +62,6 @@ loadBooks();
 
 	<a href="home.jsp">Main Function</a>
 	<a href="ContributeToRequest.jsp">Contribute</a>
+	<br />
 </body>
 </html>

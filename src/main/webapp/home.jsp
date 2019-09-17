@@ -8,11 +8,10 @@
 <script src="js/bootstrap.min.js"></script>
 <title>Revature Charity</title>
 </head>
-<body style="text-align:center">
+<body style="text-align: center">
 	<jsp:include page="header.jsp"></jsp:include>
 
-	<a href="header.jsp">Home</a>
-	<br />
+	
 	<a href="viewRequest.jsp"> Our Donations</a>
 	<br />
 	<a href="ContributeToRequest.jsp">Contribute to our Request</a>

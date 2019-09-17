@@ -8,31 +8,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.revature.model.DonationRequest;
-import com.google.gson.Gson;
-import com.revature.dao.DonationDAO;
-import com.revature.dao.DonationDAOImpl;
-import com.revature.exception.DBException;
-
 /**
  * Servlet implementation class AddRequest
  */
 public class AddRequest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String requestType= request.getParameter("requestType");
-	    int requestId  = Integer.parseInt(request.getParameter("requestId"));
-	    double requestAmount = Double.parseDouble(request.getParameter("requestAmount"));
-	    String json=DonationController.addRequest(requestType, requestId, requestAmount);
-	    PrintWriter out = response.getWriter();
-	    out.write(json);        
-        out.flush();
 
-		}
-		
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String requestType = request.getParameter("requestType");
+		int requestId = Integer.parseInt(request.getParameter("requestId"));
+		double requestAmount = Double.parseDouble(request.getParameter("requestAmount"));
+		String json = DonationController.addRequest(requestType, requestId, requestAmount);
+		PrintWriter out = response.getWriter();
+		out.write(json);
+		out.flush();
+
 	}
-	
 
+}

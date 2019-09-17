@@ -10,6 +10,8 @@ import java.util.List;
 
 import com.revature.exception.DBException;
 import com.revature.model.DonationRequest;
+import com.revature.model.DonorActivity;
+import com.revature.model.User;
 import com.revature.util.ConnectionUtil;
 
 public class DonationDAOImpl implements DonationDAO {
@@ -25,7 +27,7 @@ public class DonationDAOImpl implements DonationDAO {
 		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getConnection();
-			String sql = "select id,request_type,request_amount,request_date from donation_request";
+			String sql = "select id,request_type,request_amount from donation_request";
 			pst = con.prepareStatement(sql);
 			rs = pst.executeQuery();
 			list = new ArrayList<DonationRequest>();
@@ -92,12 +94,11 @@ public class DonationDAOImpl implements DonationDAO {
 			Integer requestId = rs.getInt("id");
 			String requestType = rs.getString("request_type");
 			double requestAmount = rs.getDouble("request_amount");
-			Date date = rs.getDate("request_date");
-
+			
 			dr.setRequestId(requestId);
 			dr.setRequestType(requestType);
 			dr.setRequestAmount(requestAmount);
-			dr.setDate(date);
+		
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -118,16 +119,16 @@ public class DonationDAOImpl implements DonationDAO {
 		PreparedStatement pst = null;
 		try {
 			con = ConnectionUtil.getConnection();
-			String sql = "insert into donation_request(id,request_type,request_amount,request_date) values ( ?,?,?,?)";
+			String sql = "insert into donation_request(id,request_type,request_amount) values ( ?,?,?)";
 			pst = con.prepareStatement(sql);
 			pst.setInt(1, dr.getRequestId());
 			pst.setString(2, dr.getRequestType());
 			pst.setDouble(3, dr.getRequestAmount());
-			pst.setDate(4, dr.getDate());
+		
 			int rows = pst.executeUpdate();
 			System.out.println("No of rows inserted:" + rows);
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			// System.out.println(e.getMessage());
 			throw new DBException("Unable to add request", e);
 		} finally {
 			ConnectionUtil.close(con, pst);
@@ -163,15 +164,15 @@ public class DonationDAOImpl implements DonationDAO {
 	 * @throws DBException
 	 **/
 
-	public void updateDonations(DonationRequest drr) throws DBException {
+	public void updateDonations(DonorActivity da) throws DBException {
 		Connection con = null;
 		PreparedStatement pst = null;
 		try {
 			con = ConnectionUtil.getConnection();
 			String sql = "update donation_request set request_amount= request_amount - ? where request_type=?";
 			pst = con.prepareStatement(sql);
-			pst.setString(2, drr.getRequestType());
-			pst.setDouble(1, drr.getRequestAmount());
+			pst.setString(2, da.getRequestType());
+			pst.setDouble(1, da.getAmount());
 			pst.executeUpdate();
 			// System.out.println("No of rows updated:" + rows);
 		} catch (SQLException e) {
@@ -213,7 +214,7 @@ public class DonationDAOImpl implements DonationDAO {
 		DonationRequest dr = null;
 		try {
 			con = ConnectionUtil.getConnection();
-			String sql = "select id,request_type,request_amount,request_date from donation_request where request_type= ?";
+			String sql = "select id,request_type,request_amount from donation_request where request_type= ?";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, requestType);
 			ResultSet rs = pst.executeQuery();
@@ -292,6 +293,28 @@ public class DonationDAOImpl implements DonationDAO {
 		} finally {
 			ConnectionUtil.close(con, pst);
 		}
+	}
+
+	public void Donation(DonationRequest dr) throws DBException {
+		Connection con = null;
+		PreparedStatement pst = null;
+		try {
+			con = ConnectionUtil.getConnection();
+			String sql = "insert into donation(request_type,request_amount) values ( ?,?)";
+			pst = con.prepareStatement(sql);
+
+			pst.setString(1, dr.getRequestType());
+			pst.setDouble(2, dr.getRequestAmount());
+
+			int rows = pst.executeUpdate();
+			System.out.println("No of rows inserted:" + rows);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new DBException("Unable to add request", e);
+		} finally {
+			ConnectionUtil.close(con, pst);
+		}
+
 	}
 
 }

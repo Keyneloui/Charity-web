@@ -12,54 +12,62 @@
 <script src="js/jquery-3.4.1.min.js"></script>
 
 </head>
-<body style="text-align:center">
+<body style="text-align: center">
 
 	<jsp:include page="header.jsp"></jsp:include>
 	<h3>Add Donation</h3>
-    <form onsubmit="loadBooks()">
-	<label>Request Type:</label>
-	<input type="text" name="requestType" id="requestType"
-		placeholder="Enter requestType" required autofocus />
-	<br />
-	<label>Request Id:</label>
-	<input type="number" name="requestId" id="requestId"
-		placeholder="Enter requestId" required />
-	<br />
-	<label>Request Amount:</label>
-	<input type="number" name="requestAmount" id="requestAmount"
-		placeholder="Enter amount" required />
-		<br/>
-	<input type="submit" value="Submit"
-			class="btn btn-success" >
-	<script>
-		//loadBooks();
-	</script>
+	<form onsubmit="loadBooks()">
+	 <label>Request Id:</label><input type="number"
+			name="requestId" id="requestId" placeholder="Enter requestId"
+			required autofocus /> <br /> 
+		<label>Request Type:</label> <input type="text" name="requestType"
+			id="requestType" placeholder="Enter requestType" required  />
+		<br /> <label>Request Amount:</label> <input
+			type="number" name="requestAmount" id="requestAmount"
+			placeholder="Enter amount" required /> <br /> <input type="submit"
+			value="Submit" class="btn btn-success">
+		<button type="reset" class="btn btn-danger" value="clear">clear
+		</button>
+		<br /> <a href="index.jsp">Home</a>
 
+		<!-- Script -->
 
-	<a href="index.jsp">Home</a>
+		<script>
+			function loadBooks() {
+				event.preventDefault();
+				var requestType = document.getElementById("requestType").value;
+				var requestId = document.getElementById("requestId").value;
+				var requestAmount = document.getElementById("requestAmount").value;
+				var formData = "requestType=" + requestType + "&requestId="
+						+ requestId + "&requestAmount=" + requestAmount;
+				console.log(formData);
 
-	<!-- Script -->
+				var url = "http://localhost:8080/charity/AddRequest?"
+						+ formData;
+				console.log(url);
+				//alert(url);
+				var formData = {};
+				//alert(formData);
+				$.get(url, function(response) {
+					console.log(response);
+					console.log(response.errorMessage);
+					//alert(response);
+					var msg = JSON.parse(response);
+					//alert(msg);
 
-	<script>
-		function loadBooks() {
-			var requestType = document.getElementById("requestType").value;
-			var requestId = document.getElementById("requestId").value;
-			var requestAmount = document.getElementById("requestAmount").value;
-			var formData = "requestType=" + requestType + "&requestId="
-					+ requestId + "&requestAmount=" + requestAmount;
-			console.log(formData);
+					if (msg.errorMessage != null) {
+						alert("Request Type exists");
+					} else {
+						//alert("valid Username/Password");
+						window.location.href = "index.jsp";
+					}
 
-			var url = "http://localhost:8080/charity/AddRequest?"+formData;
-			console.log(url);
-			  var formData = {};
-			  $.get(url, function(response){
-			          console.log(response);
-			  });
-			
-		}
-	</script>
+				});
 
-	<!-- End -->
+			}
+		</script>
+
+		<!-- End -->
 </body>
 
 

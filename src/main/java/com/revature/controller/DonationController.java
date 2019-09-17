@@ -6,8 +6,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.revature.dao.DonationDAO;
 import com.revature.dao.DonationDAOImpl;
+import com.revature.dao.UserDAO;
+import com.revature.dao.UserDAOImpl;
 import com.revature.exception.DBException;
 import com.revature.model.DonationRequest;
+import com.revature.model.DonorActivity;
+import com.revature.services.DonationService;
 import com.revature.util.DisplayUtil;
 
 public class DonationController {
@@ -44,13 +48,14 @@ public class DonationController {
 		String errorMessage = null;
 		String message = null;
 		DonationRequest dr = null;
+		DonationService ds = new DonationService();
 		try {
 			dr = new DonationRequest();
 
 			dr.setRequestType(requestType);
 			dr.setRequestId(requestId);
 			dr.setRequestAmount(requestAmount);
-			dao.addDonations(dr);
+			ds.addDonations(dr);
 			message = "Success";
 
 		} catch (Exception e) {
@@ -72,9 +77,41 @@ public class DonationController {
 
 	}
 
+	public static String contributeRequest(double requestAmount, String requestType, String emailId) {
+		UserDAO udao = new UserDAOImpl();
+		String errorMessage = null;
+		String message = null;
+		DonorActivity da = null;
+		DonationService ds = new DonationService();
+
+		da = new DonorActivity();
+		da.setAmount(requestAmount);
+		da.setRequestType(requestType);
+		da.setEmailId(emailId);
+		try {
+			// dao.findByRequestType(requestType);
+			// dao.updateDonations(da);
+			// udao.donorActivity(da);
+			ds.contributeDonation(da);
+			message = "Success";
+		} catch (DBException e) {
+			errorMessage = e.getMessage();
+		}
+		JsonObject obj = new JsonObject();
+		if (message != null) {
+
+			obj.addProperty("message", message);
+		} else if (errorMessage != null) {
+			obj.addProperty("errorMessage", errorMessage);
+		}
+
+		return obj.toString();
+	}
+
 	public static void main(String[] args) {
-		testAddDonation();
-		listRequest();
+		// testAddDonation();
+		// listRequest();
+		contributeToRequest();
 	}
 
 	private static void testAddDonation() {
@@ -84,6 +121,16 @@ public class DonationController {
 		System.out.println("Test Case 2: Invalid Input");
 		String invalidUserJson = DonationController.addRequest("Food", 1, 10000);
 
+		System.out.println(invalidUserJson);
+
+	}
+
+	private static void contributeToRequest() {
+		System.out.println("Test Case 1: Valid Input");
+		String validUserJson = DonationController.contributeRequest(1000, "Food", "s@gmail.com");
+		System.out.println(validUserJson);
+		System.out.println("Test Case 2: Invalid Input");
+		String invalidUserJson = DonationController.contributeRequest(10000, "Food", "h@gmail.com");
 		System.out.println(invalidUserJson);
 
 	}

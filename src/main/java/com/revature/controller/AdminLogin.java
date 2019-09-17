@@ -8,26 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.revature.dao.UserDAO;
-import com.revature.dao.UserDAOImpl;
-import com.revature.exception.DBException;
-import com.revature.model.User;
-
 /**
  * Servlet implementation class AdminLogin
  */
 public class AdminLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 //Get Inputs
-		 String email = request.getParameter("email_id");
-	        String password = request.getParameter("password");
-	        String json = AdminController.login(email, password);
-	        PrintWriter out = response.getWriter();
-	        out.write(json);        
-	        out.flush();
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// Get Inputs
+		String email = request.getParameter("email_id");
+		String password = request.getParameter("password");
+		String json = AdminController.login(email, password);
+		PrintWriter out = response.getWriter();
+		out.write(json);
+		out.flush();
 
 	}
 }

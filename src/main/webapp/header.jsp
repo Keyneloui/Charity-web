@@ -11,8 +11,8 @@
 
 
 	<!-- Fixed navbar -->
-
-	<nav class="navbar navbar-expand-md navbar">
+    
+	<nav class="navbar navbar-expand-md navbar"style="background-color: #e3f2fd;">
 		<a class="navbar-brand" href="#">REVATURE CHARITY TRUST</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarCollapse" aria-controls="navbarCollapse"
@@ -31,6 +31,7 @@
 						Login</a></li>
 				<li class="nav-item"><a class="nav-link" href="register.jsp">Donor
 						Register</a></li>
+
 
 				<!--   <li class="nav-item">
           <a class="nav-link" href="listdonation.jsp">List Donation</a>

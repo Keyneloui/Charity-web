@@ -1,13 +1,21 @@
 package com.revature.controller;
 
+import java.util.List;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.revature.dao.UserDAO;
 import com.revature.dao.UserDAOImpl;
+import com.revature.exception.DBException;
+import com.revature.model.DonationRequest;
+import com.revature.model.DonorActivity;
 import com.revature.model.User;
+import com.revature.services.UserService;
+import com.revature.util.DisplayUtil;
 
 public class DonorController {
 	static UserDAO udao = new UserDAOImpl();
+	static UserService us = new UserService();
 
 	public static String login(String email, String password) {
 
@@ -15,7 +23,7 @@ public class DonorController {
 
 		User user = null;
 		try {
-			user = udao.donorLogin(email, password);
+			user = us.donorLogin(email, password);
 			if (user == null) {
 				throw new Exception("invalid ");
 			}
@@ -51,10 +59,10 @@ public class DonorController {
 			user.setName(name);
 			user.setEmail(email);
 			user.setPassword(password);
-			udao.register(user);
+			us.registerDonor(user);
 			message = "Success";
 
-		} catch (Exception e) {
+		} catch (DBException e) {
 			// e.printStackTrace();
 			errorMessage = e.getMessage();
 		}
@@ -73,10 +81,37 @@ public class DonorController {
 
 	}
 
+	public static String listDonor() {
+		String json = null;
+		List<DonorActivity> list = null;
+		String errorMessage = null;
+		try {
+			// list=udao.findAll();
+			list = us.findAll();
+
+		} catch (DBException e) {
+			errorMessage = e.getMessage();
+
+		}
+		if (list != null) {
+			Gson gson = new Gson();
+			json = gson.toJson(list);
+		}
+		if (errorMessage != null) {
+			JsonObject obj = new JsonObject();
+			obj.addProperty("errorMessage", errorMessage);
+			json = errorMessage;
+		}
+
+		return json;
+
+	}
+
 	public static void main(String[] args) {
 
-		//testLogin();
-		testRegister();
+		// testLogin();
+		// testRegister();
+		listDonor();
 
 	}
 
@@ -92,12 +127,11 @@ public class DonorController {
 
 	private static void testRegister() {
 		System.out.println("Test Case 1: Valid User");
-		String validUserJson = DonorController.register("yne", "i@gmail.com", "234");
+		String validUserJson = DonorController.register("ishna", "i@gmail.com", "234");
 		System.out.println(validUserJson);
-		System.out.println("Test Case 1: Valid User");
+		System.out.println("Test Case 2: Invalid User");
 		String invalidUserJson = DonorController.register("Sheyne", "s@gmail.com", "234");
 		System.out.println(invalidUserJson);
-
 
 	}
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.revature.exception.DBException;
 import com.revature.model.DonationRequest;
+import com.revature.model.DonorActivity;
 
 public interface DonationDAO {
 	List<DonationRequest> findAll() throws DBException;
@@ -14,7 +15,7 @@ public interface DonationDAO {
 
 	void addDonation(DonationRequest dr) throws DBException;
 
-	void updateDonations(DonationRequest drr) throws DBException;
+	void updateDonations(DonorActivity da) throws DBException;
 
 	void updateDonationss(DonationRequest drr) throws DBException;
 

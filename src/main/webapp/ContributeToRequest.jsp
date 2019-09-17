@@ -9,52 +9,60 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.4.1.min.js"></script>
 </head>
-<body style="text-align:center">
+<body style="text-align: center">
 	<jsp:include page="header.jsp"></jsp:include>
-	<h3>Your Contributions</h3>
 	
+	<form onsubmit="loadBooks()">
+		<label>Email Id:</label> <input type="email" name="emailId"
+			id="emailId" placeholder="Enter email Id" required autofocus /> <br />
+		<label>Request Type:</label> <input type="text" name="requestType"
+			id="requestType" placeholder="Enter requestType" required /> <br />
 
-	<label>Request Type:</label>
-	<input type="text" name="requestType" id="requestType"
-		placeholder="Enter requestType" required autofocus />
-	<br />
-	<label>Request Id:</label>
-	<input type="number" name="requestId" id="requestId"
-		placeholder="Enter requestId" required />
-	<br />
-	<label>Request Amount:</label>
-	<input type="number" name="requestAmount" id="requestAmount"
-		placeholder="Enter amount" required />
-	<br />
-	<button onclick="loadBooks()">Submit</button>
+		<label>Request Amount:</label> <input type="number"
+			name="requestAmount" id="requestAmount" placeholder="Enter amount"
+			required /> <br /> <input type="submit" value="Submit"
+			class="btn btn-success">
+		<button type="reset" class="btn btn-danger" value="clear">clear
+		</button>
 
-	<a href="home.jsp">Home</a>
+		<a href="home.jsp">Home</a>
+	</form>
 	<script>
 		function loadBooks() {
+			event.preventDefault();
+			//alert('entering');
 			var requestType = document.getElementById("requestType").value;
-			var requestId = document.getElementById("requestId").value;
+			var emailId = document.getElementById("emailId").value;
 			var requestAmount = document.getElementById("requestAmount").value;
-			var formData = "requestType=" + requestType + "&requestId="
-					+ requestId + "&requestAmount=" + requestAmount;
+			var formData = "requestType=" + requestType + "&emailId=" + emailId
+					+ "&requestAmount=" + requestAmount;
 			console.log(formData);
+			//	alert(formData);
 
-			var url = "http://localhost:8080/charity/ContributeRequest?";
+			var url = "http://localhost:8080/charity/ContributeRequest?"
+					+ formData;
 			console.log(url);
-			//var formData = {};
-			//$.get(url, function(response){
+			//	alert(url);
+			var formData = {};
+			//	alert(formData);
+			$
+					.get(
+							url,
+							function(response) {
 
-			//    console.log(response);
-			//});
+								console.log(response);
+								console.log(response.errorMessage);
+								var msg = JSON.parse(response);
+								//	alert(msg);
 
-			var xhr = new XMLHttpRequest();
-			xhr.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					console.log(JSON.stringify(this.responseText));
-					console.log('status ok!');
-				}
-			}
-			xhr.open('GET', url + formData, true);
-			xhr.send();
+								if (msg.errorMessage != null) {
+									alert("Email and Request Type not found..please enter your registered email and the request type which is in our donation request");
+								} else {
+									//alert("valid Username/Password");
+									window.location.href = "home.jsp";
+								}
+							});
+
 		}
 	</script>
 

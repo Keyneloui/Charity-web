@@ -1,7 +1,7 @@
 package com.revature.model;
 
 public class User {
-	
+
 	private String name;
 	private String email;
 	private String password;
@@ -10,8 +10,6 @@ public class User {
 	public String toString() {
 		return " Name=" + name + ", Email=" + email + ", Password=" + password + ".";
 	}
-
-	
 
 	public String getName() {
 		return name;

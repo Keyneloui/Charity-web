@@ -8,36 +8,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.revature.model.User;
-import com.revature.dao.UserDAO;
-import com.revature.dao.UserDAOImpl;
-import com.revature.exception.DBException;
-
 /**
  * Servlet implementation class RegisterServlet
  */
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	       String name=request.getParameter("name");
-	       String email_id = request.getParameter("email_id");
-	       String password=request.getParameter("password");
-	       String json = DonorController.register(name, email_id, password);
-	        PrintWriter out = response.getWriter();
-	        out.write(json);        
-	        out.flush();
-	      
-	     
-	      
-	       
-	       
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	       
+		String name = request.getParameter("name");
+		String email_id = request.getParameter("email_id");
+		String password = request.getParameter("password");
+		String json = DonorController.register(name, email_id, password);
+		PrintWriter out = response.getWriter();
+		out.write(json);
+		out.flush();
+
 	}
 
-	
 }
