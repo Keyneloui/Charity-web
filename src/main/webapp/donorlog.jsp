@@ -13,6 +13,9 @@
 <body style="text-align: center">
 
 	<jsp:include page="header.jsp"></jsp:include>
+	<br />
+	<br />
+	<br />
 	<h2>Donor Login</h2>
 	<script type="text/javascript">
 		function login() {
@@ -25,7 +28,7 @@
 			id="email_id" placeholder="Enter Email" required autofocus /> <br />
 		<label>Password:</label> <input type="password" name="password"
 			id="password" placeholder="Enter Password" required /> <br /> <input
-			type="submit" value="Submit" class="btn btn-success">
+			type="submit" value="Submit" class="btn btn-success">&nbsp;
 		<button type="reset" class="btn btn-danger" value="clear">clear
 		</button>
 		<br />
@@ -46,6 +49,7 @@
 			//alert(url);
 			var formData = {};
 			$.get(url, function(response) {
+				localStorage.setItem("name",response.name);
 				console.log(response);
 				console.log(response.errorMessage);
 				var msg = JSON.parse(response);

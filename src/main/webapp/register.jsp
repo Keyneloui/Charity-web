@@ -22,12 +22,15 @@
 		}
 	</script>
 	<form onsubmit="register()">
+	<br />
+	<br />
+	<br />
 		<label>Name:</label> <input type="text" name="Name" id="name"
 			placeholder="Enter Name" required autofocus /> <br /> <label>Email:</label>
 		<input type="email" name="email" id="email" placeholder="Enter Email"
 			required /> <br /> <label>Password:</label> <input type="password"
 			name="pass" id="password" placeholder="Enter Password" required /> <br />
-		<input type="submit" value="Submit" class="btn btn-success">
+		<input type="submit" value="Submit" class="btn btn-success">&nbsp;
 		<button type="reset" class="btn btn-danger" value="clear">clear
 		</button>
 		<br /> Existing User ? <a href="donorlog.jsp">Login</a> <br />

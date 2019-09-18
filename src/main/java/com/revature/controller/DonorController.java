@@ -110,8 +110,8 @@ public class DonorController {
 	public static void main(String[] args) {
 
 		// testLogin();
-		// testRegister();
-		listDonor();
+		 testRegister();
+		//listDonor();
 
 	}
 
@@ -130,7 +130,7 @@ public class DonorController {
 		String validUserJson = DonorController.register("ishna", "i@gmail.com", "234");
 		System.out.println(validUserJson);
 		System.out.println("Test Case 2: Invalid User");
-		String invalidUserJson = DonorController.register("Sheyne", "s@gmail.com", "234");
+		String invalidUserJson = DonorController.register("Shil", "s@gmail.com", "234");
 		System.out.println(invalidUserJson);
 
 	}

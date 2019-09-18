@@ -16,10 +16,10 @@ public class DonationService {
 	static DonationDAO dao = new DonationDAOImpl();
 	static UserDAO udao = new UserDAOImpl();
 
-	public List<DonationRequest> findAll() {
+	public List<DonationRequest> findAll()throws DBException {
 		List list = null;
 		try {
-			dao.findAll();
+			list=dao.findAll();
 		} catch (DBException e) {
 			System.out.println(e.getMessage());
 		}
@@ -75,11 +75,15 @@ public class DonationService {
 		}
 	}
 
-	public void updateDonationss(DonationRequest drr) {
+	public void updateDonationss(DonationRequest drr)throws DBException {
 		try {
+			String requestType=null;
+			dao.findByRequestType(requestType);
 			dao.updateDonationss(drr);
 		} catch (DBException e) {
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
+			throw new DBException("Give a valid input");
+
 		}
 	}
 

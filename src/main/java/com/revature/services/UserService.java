@@ -2,9 +2,11 @@ package com.revature.services;
 
 import java.util.List;
 
+
 import com.revature.dao.UserDAO;
 import com.revature.dao.UserDAOImpl;
 import com.revature.exception.DBException;
+
 import com.revature.model.DonorActivity;
 import com.revature.model.User;
 
@@ -13,6 +15,7 @@ public class UserService {
 
 	public void registerDonor(User user) throws DBException {
 		try {
+
 			udao.register(user);
 		} catch (DBException e) {
 			// System.out.println(e.getMessage());
@@ -45,6 +48,7 @@ public class UserService {
 	public void donorActivity(DonorActivity da) {
 
 		try {
+
 			udao.donorActivity(da);
 		} catch (DBException e) {
 			System.out.println(e.getMessage());

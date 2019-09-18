@@ -17,13 +17,15 @@ import com.revature.util.DisplayUtil;
 public class DonationController {
 
 	static DonationDAO dao = new DonationDAOImpl();
+	static DonationService ds = new DonationService();
 
 	public static String listRequest() {
 		String json = null;
 		List<DonationRequest> list = null;
 		String errorMessage = null;
 		try {
-			list = dao.findAll();
+			//list = dao.findAll();
+			list=ds.findAll();
 			DisplayUtil.display(list);
 
 		} catch (DBException e) {
@@ -48,7 +50,7 @@ public class DonationController {
 		String errorMessage = null;
 		String message = null;
 		DonationRequest dr = null;
-		DonationService ds = new DonationService();
+		
 		try {
 			dr = new DonationRequest();
 
@@ -76,6 +78,52 @@ public class DonationController {
 		return obj.toString();
 
 	}
+	
+	public static String validateRequestType(String requestType) throws DBException {
+		
+		DonationRequest donationRequest = dao.findByRequestType(requestType);
+		if ( donationRequest == null) {
+			throw new DBException("Request Id not found");
+		}
+		return requestType;
+	}
+	public static String updateRequest(String requestType, double requestAmount) {
+
+		String errorMessage = null;
+		String message = null;
+		DonationRequest dr = null;
+		DonationService ds = new DonationService();
+		try {
+			dr = new DonationRequest();
+
+			dr.setRequestType(requestType);
+		//	dr.setRequestId(requestId);
+			dr.setRequestAmount(requestAmount);
+			
+			validateRequestType(requestType);
+			ds.updateDonationss(dr);
+			message = "Success";
+
+		} catch (Exception e) {
+			// e.printStackTrace();
+			errorMessage = e.getMessage();
+		}
+
+		// Prepare JSON Object
+
+		JsonObject obj = new JsonObject();
+		if (message != null) {
+
+			obj.addProperty("message", message);
+		} else if (errorMessage != null) {
+			obj.addProperty("errorMessage", errorMessage);
+		}
+
+		return obj.toString();
+
+	}
+
+
 
 	public static String contributeRequest(double requestAmount, String requestType, String emailId) {
 		UserDAO udao = new UserDAOImpl();
@@ -92,6 +140,7 @@ public class DonationController {
 			// dao.findByRequestType(requestType);
 			// dao.updateDonations(da);
 			// udao.donorActivity(da);
+			validateRequestType(requestType);
 			ds.contributeDonation(da);
 			message = "Success";
 		} catch (DBException e) {
@@ -112,6 +161,7 @@ public class DonationController {
 		// testAddDonation();
 		// listRequest();
 		contributeToRequest();
+		//updateRequest();
 	}
 
 	private static void testAddDonation() {
@@ -130,7 +180,17 @@ public class DonationController {
 		String validUserJson = DonationController.contributeRequest(1000, "Food", "s@gmail.com");
 		System.out.println(validUserJson);
 		System.out.println("Test Case 2: Invalid Input");
-		String invalidUserJson = DonationController.contributeRequest(10000, "Food", "h@gmail.com");
+		String invalidUserJson = DonationController.contributeRequest(10000, "Education", "s@gmail.com");
+		System.out.println(invalidUserJson);
+
+	}
+	private static void updateRequest() {
+		System.out.println("Test Case 1: Valid Input");
+		String validUserJson = DonationController.updateRequest("Food",12000);
+		System.out.println(validUserJson);
+		System.out.println("Test Case 2: Invalid Input");
+		String invalidUserJson = DonationController.updateRequest("education",12000);
+
 		System.out.println(invalidUserJson);
 
 	}

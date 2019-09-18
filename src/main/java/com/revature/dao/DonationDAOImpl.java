@@ -124,6 +124,32 @@ public class DonationDAOImpl implements DonationDAO {
 			pst.setInt(1, dr.getRequestId());
 			pst.setString(2, dr.getRequestType());
 			pst.setDouble(3, dr.getRequestAmount());
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		
 			int rows = pst.executeUpdate();
 			System.out.println("No of rows inserted:" + rows);

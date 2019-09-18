@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,6 @@
 
 
 <script src="js/jquery-3.4.1.min.js"></script>
-
 </head>
 <body style="text-align: center">
 
@@ -18,15 +17,12 @@
 	<br />
 	<br />
 	<br />
-	<h3>Add Donation</h3>
+	<h3>Update Donation</h3>
 	<form onsubmit="loadBooks()">
 	
-	 <label>Request Id:</label><input type="number"
-			name="requestId" id="requestId" placeholder="Enter requestId"
-			required autofocus /> <br /> 
 		<label>Request Type:</label> <input type="text" name="requestType"
 			id="requestType" placeholder="Enter requestType" required  />
-		<br /> <label>Request Amount:</label> <input
+		<br /> <label>Enter the amount you want to add:</label> <input
 			type="number" name="requestAmount" id="requestAmount"
 			placeholder="Enter amount" required /> <br /> <input type="submit"
 			value="Submit" class="btn btn-success">&nbsp;
@@ -40,13 +36,13 @@
 			function loadBooks() {
 				event.preventDefault();
 				var requestType = document.getElementById("requestType").value;
-				var requestId = document.getElementById("requestId").value;
+				
 				var requestAmount = document.getElementById("requestAmount").value;
-				var formData = "requestType=" + requestType + "&requestId="
-						+ requestId + "&requestAmount=" + requestAmount;
+				var formData = "requestType=" + requestType 
+						 + "&requestAmount=" + requestAmount;
 				console.log(formData);
 
-				var url = "http://localhost:8080/charity/AddRequest?"
+				var url = "http://localhost:8080/charity/UpdateRequest?"
 						+ formData;
 				console.log(url);
 				//alert(url);
@@ -60,7 +56,7 @@
 					//alert(msg);
 
 					if (msg.errorMessage != null) {
-						alert("Request Type exists");
+						alert("Request Type doesn't exists");
 					} else {
 						//alert("valid Username/Password");
 						window.location.href = "index.jsp";
@@ -72,7 +68,6 @@
 		</script>
 
 		<!-- End -->
+
 </body>
-
-
 </html>

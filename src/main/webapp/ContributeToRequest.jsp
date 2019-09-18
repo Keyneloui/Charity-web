@@ -11,6 +11,9 @@
 </head>
 <body style="text-align: center">
 	<jsp:include page="header.jsp"></jsp:include>
+	<br />
+	<br />
+	<br />
 	
 	<form onsubmit="loadBooks()">
 		<label>Email Id:</label> <input type="email" name="emailId"
@@ -18,10 +21,10 @@
 		<label>Request Type:</label> <input type="text" name="requestType"
 			id="requestType" placeholder="Enter requestType" required /> <br />
 
-		<label>Request Amount:</label> <input type="number"
+		<label>Amount You Want to Contribute:</label> <input type="number"
 			name="requestAmount" id="requestAmount" placeholder="Enter amount"
 			required /> <br /> <input type="submit" value="Submit"
-			class="btn btn-success">
+			class="btn btn-success">&nbsp;
 		<button type="reset" class="btn btn-danger" value="clear">clear
 		</button>
 
@@ -45,10 +48,7 @@
 			//	alert(url);
 			var formData = {};
 			//	alert(formData);
-			$
-					.get(
-							url,
-							function(response) {
+			$.get(url,function(response) {
 
 								console.log(response);
 								console.log(response.errorMessage);
@@ -59,6 +59,8 @@
 									alert("Email and Request Type not found..please enter your registered email and the request type which is in our donation request");
 								} else {
 									//alert("valid Username/Password");
+									alert("Thank You for your contribution");
+									
 									window.location.href = "home.jsp";
 								}
 							});

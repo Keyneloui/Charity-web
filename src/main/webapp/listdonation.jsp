@@ -31,6 +31,9 @@ function loadBooks()
 </head>
 <body style="text-align: center">
 	<jsp:include page="header.jsp"></jsp:include>
+	<br />
+	<br />
+	<br />
 	<h2>Our Request</h2>
 	
 	<form onsubmit="loadBooks()"></form>
